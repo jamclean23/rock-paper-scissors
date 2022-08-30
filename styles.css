@@ -1,0 +1,54 @@
+/*CSS Stylesheet */
+
+
+
+button {
+    width: 15rem;
+    height: 8rem;
+    margin-inline: 2rem;
+    color: white;
+    background-color: rgba(106, 112, 123, 1);
+    font-size: 18px;
+}
+
+.container {
+    margin: 1rem;
+}
+.box {
+    width: 75px;
+    height: 30px;
+    color: white;
+}
+
+.label-score {
+    display: flex;
+}
+
+.label {
+    text-align: right;
+}
+
+.score {
+    text-align: center;
+}
+
+#main-content {
+    min-width: 100%;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 80px;
+    color: white;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+html {
+    background-image: linear-gradient(blue, black);
+}

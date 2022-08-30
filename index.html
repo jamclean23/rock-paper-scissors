@@ -5,12 +5,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js"></script>
     <link rel="stylesheet" href="styles.css">
     <title>Rock Paper Scissors</title>
 </head>
 
 <body>
+    <!--Main Content Box-->
+    <div id="main-content">Man vs Machine, a clash of the ages!</div>
+
+    <!--Choice Buttons-->
+    <div class="container">
+        <button id="rock-btn" class="choice-btn">Rock</button>
+        <button id="paper-btn" class="choice-btn">Paper</button>
+        <button id="scissors-btn" class="choice-btn">Scissors</button>
+    </div>
+
+    <!--Container for score/round boxes-->
+    <div class="container">
+
+        <!--Score for the user-->   
+        <div class="label-score">
+            <div id="user-score-label" class="box label">User: </div> 
+            <div id="user-score" class="box score">0</div>
+        </div>
+        
+        <!--Score for the computer-->   
+        <div class="label-score">
+            <div id="computer-score-label" class="box label">Computer: </div>  
+            <div id="computer-score" class="box score">0</div>
+        </div>
+
+        <!--Box for the current round-->
+        <div class="label-score">
+            <div id="round-label" class="box label">Round :</div>
+            <div id="round-box" class="box score">0/5</div>
+        </div>
+    </div>
+    <!--Run JS-->
+    <script src="script.js"></script>
     
 </body>
 

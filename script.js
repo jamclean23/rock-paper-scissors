@@ -1,7 +1,44 @@
 //Javascript
 
+let userWinCount = 0;
+let computerWinCount = 0;
+let gameCount = 0;
 
-game();
+
+//Ask user for input from button and store
+
+//Rock button
+let rockBtn = document.getElementById('rock-btn');
+rockBtn.addEventListener('click', function(){
+    console.log("ROCK");
+    ++gameCount;
+    game("rock");
+    updateScore();
+    
+});
+
+//Paper button
+let paperBtn = document.getElementById('paper-btn');
+paperBtn.addEventListener('click', function(){
+    console.log("PAPER");
+    ++gameCount;
+    game("paper");
+    updateScore();
+    
+
+    });
+        
+//Scissors button
+let scissorsBtn = document.getElementById('scissors-btn');
+scissorsBtn.addEventListener('click', function(){
+    console.log("SCISSORS");
+    ++gameCount;
+    game("scissors");
+    updateScore();
+    
+});
+
+
 
 
 //FUNCTIONS
@@ -9,60 +46,71 @@ game();
 
 //Function to run the game loop
 
-function game() {
+function game(userInput) {
 
-    //Run rock paper scissors five times, announce the winner
-    
-    let userWinCount = 0;
-    let computerWinCount = 0;
+    //Calculate computer choice
+    let compChoice = numberToSign(Math.floor(Math.random()*3+1));
 
-    for (let i = 0; i < 5; ++i) {
-
-        //Ask user for input and store in string format
-        let keepGoing = true;
-        while (keepGoing) {
-            userInput = prompt("Do you choose rock, paper, or scissors?");
-            userInput = userInput.toLowerCase();
-            if (userInput == "rock" || userInput == "paper" || userInput == "scissors") {
-                keepGoing = false;
-            } else {
-                alert("Invalid choice");    
-            }
-                
-        }
-
-        //Calculate computer choice
-        let compChoice = numberToSign(Math.floor(Math.random()*3+1));
-
-        //Calculate the winner and print the result
-        let winner = playRound(userInput, compChoice);
-        
-        if (winner == "tie") {
-            console.log(`It's a tie! You chose ${userInput} and the computer chose ${compChoice}`);
-        } else if (winner == "user") {
-            ++userWinCount;
-            console.log(`You won! ${capitalize(userInput)} beats ${compChoice}`);
-        } else if (winner == "computer") {
-            ++computerWinCount;
-            console.log(`You lost! ${capitalize(compChoice)} beats ${userInput}`);
-        }
-
-        //Display tally
-        console.log("computer: " + computerWinCount);
-        console.log("You: " + userWinCount);
-
+    //Calculate the winner and print the result
+    let winner = playRound(userInput, compChoice);
+     
+    if (winner == "tie") {
+        document.getElementById("main-content").textContent = `It's a tie! You chose ${userInput} and the computer chose ${compChoice}`;
+        console.log(`It's a tie! You chose ${userInput} and the computer chose ${compChoice}`);
+    } else if (winner == "user") {
+        ++userWinCount;
+        document.getElementById("main-content").textContent = `You won! ${capitalize(userInput)} beats ${compChoice}`;
+        console.log(`You won! ${capitalize(userInput)} beats ${compChoice}`);
+    } else if (winner == "computer") {
+        ++computerWinCount;
+        document.getElementById("main-content").textContent = `You lost! ${capitalize(compChoice)} beats ${userInput}`;
+        console.log(`You lost! ${capitalize(compChoice)} beats ${userInput}`);
     }
 
-    //Calculate overall winner and display
-    
-    if (userWinCount > computerWinCount) {
-        console.log("You have triumphed over the machine! There is still hope for the human race.");
-    } else if (computerWinCount > userWinCount) {
-        console.log("The computer has crushed you! Surely this marks the last days of mankind.");
-    } else if (userWinCount == computerWinCount) {
-        console.log("A tie! The battle wages ever on.");
+    if (gameCount == 5) {
+        if (userWinCount > computerWinCount) {
+            document.getElementById("main-content").textContent = "You've defeated the computer! There is still hope for the human race.";
+            gameCount = 0;
+        } else if (userWinCount < computerWinCount) {
+            document.getElementById("main-content").textContent = "The computer has vanquished you in battle. Surely this is the end of days.";
+            gameCount = 0;
+        } else if (userWinCount == computerWinCount) {
+            document.getElementById("main-content").textContent = "It's a tie ... the battle continues.";
+            gameCount = 0;
+        }
+
+        userWinCount = 0;
+        computerWinCount = 0;
     }
+    
+
+    //Display tally
+    console.log("computer: " + computerWinCount);
+    console.log("You: " + userWinCount);
+
+
+
 }
+
+
+//Function to update score boxes
+
+function updateScore() {
+    //Update text boxes
+
+    let userScoreBox = document.getElementById("user-score");
+    userScoreBox.textContent = userWinCount;
+
+    let computerScoreBox = document.getElementById("computer-score");
+    computerScoreBox.textContent = computerWinCount;
+
+    let roundBox = document.getElementById("round-box");
+    roundBox.textContent = gameCount + "/5";
+
+
+
+}
+
 
 //Function to convert number value to rock paper or scissors
 
