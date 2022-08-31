@@ -51,4 +51,5 @@ body {
 
 html {
     background-image: linear-gradient(blue, black);
+    min-height: 100vh;
 }
